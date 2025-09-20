@@ -5,7 +5,7 @@
 <table>
 <tr>
 <td>
-  <img src="images/Chuol%20Deng's%20Senior%20Portrait.jpg" alt="Chuol Deng" width="200"/>
+  <img src="images/Chuol%20Deng's%20Senior%20Portrait.jpg" alt="Chuol Deng" width="600"/>
 </td>
 <td>
 Hi, I’m **Chuol Ruei Deng**, a researcher and community leader.  
