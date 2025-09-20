@@ -1,19 +1,7 @@
-# Chuol Tongyik Ruei Deng #                                                                  [Home](index.md) | [Projects](projects.md) | [CV](cv.md) | [Charity](charity.md)
-
-<table width="100%">
-<tr>
-<td align="left">
+# Chuol Tongyik Ruei Deng #      
 
 [Home](index.md) | [Projects](projects.md) | [CV](cv.md) | [Charity](charity.md)
 
-</td>
-<td align="right">
-
-**Chuol Ruei Deng**
-
-</td>
-</tr>
-</table>
 
 
 ![Alt Text](images/Chuol%20Deng's%20Senior%20Portrait.jpg)
