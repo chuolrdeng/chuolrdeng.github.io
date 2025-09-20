@@ -1,4 +1,4 @@
-# Welcome to My Website
+# Welcome to Chuol Tongyik Ruei Deng's Website
 
 ![Alt Text](images/Chuol%20Deng's%20Senior%20Portrait.jpg)
 
