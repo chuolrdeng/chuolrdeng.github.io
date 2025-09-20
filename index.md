@@ -1,5 +1,5 @@
-# Chuol Tongyik Ruei Deng #      
-[Home](index.md) | [Projects](projects.md) | [CV](cv.md) | [Charity](charity.md)
+
+  [Home](index.md) | [Projects](projects.md) | [CV](cv.md) | [Charity](charity.md)
 
 <img src="images/Chuol%20Deng's%20Senior%20Portrait.jpg" alt="Chuol Ruei Deng" width="400"/>
 
