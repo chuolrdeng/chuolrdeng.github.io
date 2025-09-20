@@ -1,6 +1,6 @@
 # Welcome to My Website
 
-![My Logo](Chuol Deng's Senior Portrait.jpg)
+![Alt Text](images/Chuol%20Deng's%20Senior%20Portrait.jpg)
 
 ## About Me
 I am **Chuol Deng**, a South Sudanese scholar, researcher, and community leader whose journey began in a refugee camp and has taken me to New York University and beyond.  
