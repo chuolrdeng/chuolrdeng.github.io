@@ -1,8 +1,8 @@
 # Chuol Tongyik Ruei Deng #      
-
 [Home](index.md) | [Projects](projects.md) | [CV](cv.md) | [Charity](charity.md)
 
 <img src="images/Chuol%20Deng's%20Senior%20Portrait.jpg" alt="Chuol Ruei Deng" width="400"/>
+
 ## About Me
 I am **Chuol Deng**, a South Sudanese scholar, researcher, and community leader whose journey began in a refugee camp and has taken me to New York University and beyond.  
 As a first-generation student, I grew up in a community where access to education and healthcare was almost impossible. These experiences shaped my passion for **education, economic development, and technology** as powerful tools to transform lives.
