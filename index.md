@@ -2,7 +2,18 @@
 
 [Home](index.md) | [Projects](projects.md) | [CV](cv.md) | [Charity](charity.md)
 
-
+<table>
+<tr>
+<td>
+  <img src="images/Chuol%20Deng's%20Senior%20Portrait.jpg" alt="Chuol Deng" width="200"/>
+</td>
+<td>
+Hi, I’m **Chuol Ruei Deng**, a researcher and community leader.  
+I focus on development engineering, economics, and empowering communities.  
+Here you’ll find my projects, CV, and charity work.
+</td>
+</tr>
+</table>
 
 ![Alt Text](images/Chuol%20Deng's%20Senior%20Portrait.jpg)
 
