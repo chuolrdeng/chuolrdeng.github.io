@@ -1,12 +1,11 @@
-# Chuol Tongyik Ruei Deng #      
-[Home](index.md) | [Projects](projects.md) | [CV](cv.md) | [Charity](charity.md)
+  [Home](index.md) | [Projects](projects.md) | [CV](cv.md) | [Charity](charity.md)
 
-# Curriculum Vitae – Chuol Ruei Deng
+# Curriculum Vitae
 
 [Download my CV (PDF)](images/ChuolRueiDengBerkeley.pdf)
 
 
-#Professional Summary#
+Professional Summary
 
 I am Chuol Ruei Deng, a driven researcher, entrepreneur, and development advocate with a strong foundation in Economics and Development Engineering. As the Founder and CEO of both the Thok Nath Research Institute and the Bangtigow Foundation, I have led initiatives that empower communities through education, technology, and sustainable development. I possess extensive experience in data analysis, research design, and project management, having contributed to high-impact projects in economic development, blockchain research, and refugee education programs.
 
