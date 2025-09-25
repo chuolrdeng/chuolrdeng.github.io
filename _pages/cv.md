@@ -11,54 +11,38 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.S. in Development Engineering (AI and Data Science focus), New York University Abu Dhabi, 2025 (expected)  
+* B.Sc. in Economics and Mathematics, New York University, 2024  
 
-Work experience
+Work Experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* 2024 – Present: Research Assistant  
+  * NYU Abu Dhabi – Center for Technology and Economic Development (CTED) & Africa House  
+  * Duties included: Conducting field research, data analysis (Stata, R, Matlab), supporting blockchain & economic development projects, and preparing research reports.  
+  * Supervisor: Professor William Easterly & CTED team  
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* 2023 – 2024: Data Analyst  
+  * Pangea Educational Development (PANGEA)  
+  * Duties included: Analyzing large education datasets from Uganda, predicting outcomes, preparing reports for CEO and senior staff.  
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
+* 2021 – Present: Founder & CEO  
+  * Thok Nath Research Institute & Bangtigow Foundation  
+  * Duties included: Leading teams on education, research, and community programs, developing Nuer-English dictionary and online language courses, managing partnerships with Google Translate and BBC World News.  
+
+* 2020 – 2021: Program Management Intern  
+  * Office of Social Responsibility, NYU Abu Dhabi  
+  * Duties included: Overseeing logistics, budgets, vendor management, and event coordination.  
+
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Data Analysis & Research  
+  * Stata, R, Matlab, Python, Excel  
+* Web & Tech  
+  * Jekyll, GitHub Pages, Minimal Mistakes, LaTeX  
+* Project & Program Management  
+  * Leadership, stakeholder engagement, strategic planning  
+* Languages  
+  * English, Thok Nath (Nuer), Amharic
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+
+
