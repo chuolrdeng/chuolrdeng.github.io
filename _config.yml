@@ -23,7 +23,7 @@ repository               : "chuolrdeng.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "/Users/chuoldeng/chuolrdeng.github.io/images/Chuol Deng's Senior Portrait.jpg"
+  avatar           : "Chuol Deng's Senior Portrait.jpg"
   name             : ""
   pronouns         : # example: "she/her"  
   bio              : "I am a Master of Development Engineering student at UC Berkeley"
