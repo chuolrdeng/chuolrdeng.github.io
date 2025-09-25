@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
- [Chuol's CV Here](/Users/chuoldeng/chuolrdeng.github.io/files/ChuolRueiDengBerkeley.pdf).
+ [Chuol's CV Here](/files/ChuolRueiDengBerkeley.pdf).
 
 Education
 ======
