@@ -24,12 +24,12 @@ repository               : "chuolrdeng.github.io"
 author:
   # Biographic information
   avatar           : "/Users/chuoldeng/chuolrdeng.github.io/images/Chuol Deng's Senior Portrait.jpg"
-  name             : "Chuol Ruei Deng"
+  name             : ""
   pronouns         : # example: "she/her"  
   bio              : "I am a Master of Development Engineering student at UC Berkeley"
   location         : "2299 Piedmont Ave, Berkeley"
   employer         : "New York University Abu Dhabi"
-  uri              : # URL
+  uri              : chuolrdeng.github.io # URL
   email            : "chuoldeng@romro.org" 
 
   # Academic websites
