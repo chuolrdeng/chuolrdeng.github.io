@@ -9,10 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-If file does not load below, click [THIS LINK](/Users/chuoldeng/chuolrdeng.github.io/files/ChuolRueiDengBerkeley.pdf) to download.
-
-<embed src="{{ site.baseurl }}/files/Gailliot_CV.pdf" width="650" height="800" type='application/pdf'>
-
+ [CV](/Users/chuoldeng/chuolrdeng.github.io/files/ChuolRueiDengBerkeley.pdf) to download.
 
 Education
 ======
