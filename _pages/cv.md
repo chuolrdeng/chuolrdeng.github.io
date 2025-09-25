@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
- [CV](/Users/chuoldeng/chuolrdeng.github.io/files/ChuolRueiDengBerkeley.pdf) to download.
+ [Chuol's CV Here](/Users/chuoldeng/chuolrdeng.github.io/files/ChuolRueiDengBerkeley.pdf).
 
 Education
 ======
