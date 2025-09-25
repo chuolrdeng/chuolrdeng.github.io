@@ -7,7 +7,11 @@ redirect_from:
   - /about.html
 ---
 
-Chuol Ruei Deng is a South Sudanese scholar, researcher, and community leader whose journey spans from life in a refugee camp to the global stage of academia and social impact. His work lies at the intersection of economic development, data analysis, and technology for social good.
+I am a graduate of New York University with a degree in Economics and Mathematics and am currently pursuing my Master’s in Development Engineering, with a focus on AI and Data Science for corporate, NGO, and government applications. I have worked as a Project Manager with MIT’s Emerging Talent Program, an Economic Analyst with the Milken Institute, a Research Assistant at NYU Abu Dhabi’s Center for Technology and Economic Development, and a Data Analyst with Pangea Educational Development. These roles have allowed me to bridge research, data, and policy to address development and economic challenges at both local and global levels.
+
+Beyond my academic and professional experience, I also run two nonprofit organizations: the Romro Foundation, which supports underprivileged students with access to education and mentorship, and the Thok Nath Research Institute, which advances cultural preservation, education, and technology initiatives. Through these initiatives, I have collaborated with Google and the BBC, highlighting my commitment to driving innovation and impact across diverse sectors.
+
+
 
 **Education & Academic Background**
 - Graduate of New York University with a degree in Economics and Mathematics
