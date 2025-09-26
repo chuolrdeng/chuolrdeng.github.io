@@ -4,7 +4,7 @@ Welcome to my portfolio — a collection of projects and initiatives that reflec
 
 ---
 
-## [📄 My Portfolio (PDF)](/files/_portfolio/Chuol Deng's Portfolio.pdf)
+## [📄 My Portfolio (PDF)](/files/_portfolio/Chuol%20Deng%27s%20Portfolio.pdf)  
 
 Click the link above to view or download my full CV.  
 
