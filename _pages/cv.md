@@ -6,11 +6,9 @@ author_profile: true
 redirect_from:
   - /resume
 ---
-
 {% include base_path %}
 
  [Chuol's CV Here](/files/ChuolRueiDengBerkeley.pdf).
-
 
 Education
 ---
@@ -34,7 +32,7 @@ Work Experience
 
 * 2020 – 2021: Program Management Intern  
   * Office of Social Responsibility, NYU Abu Dhabi  
-  * Duties included: Overseeing logistics, budgets, vendor management, and event coordination.  
+  * Duties included: Overseeing logistics, budgets, vendor management, and event coordination.
 
 Skills
 ---
