@@ -80,16 +80,6 @@ author:
   zhihu            : # Username
 
 
-defaults:
-  - scope:
-      path: ""
-      type: "about"
-    values:
-      prev_next: false
-      share: false
-      date: false
-
-
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
   books:
@@ -240,7 +230,6 @@ collections:
     permalink: /:collection/:path/
 
 
-
 # These settings control how pages and collections are included in the site
 defaults:
   # _posts
@@ -250,10 +239,10 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
-      comments: true
+      read_time: false
+      comments: false
       share: false
-      related: true
+      related: false
   # _pages
   - scope:
       path: ""
