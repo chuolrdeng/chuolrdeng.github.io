@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Project 1: Reproducibility and GitHub"
+title: 
 permalink: /project/
 author_profile: true
 redirect_from:
@@ -10,6 +10,9 @@ redirect_from:
 {% include base_path %}
 
 
+---
+Project 1: Reproducibility and GitHub
+---
 This project introduced the fundamentals of reproducible workflows in computational social science.  
 I learned how to create and manage GitHub repositories, track changes with Git, and collaborate with teammates through branches, pull requests, and reviews.  
 
