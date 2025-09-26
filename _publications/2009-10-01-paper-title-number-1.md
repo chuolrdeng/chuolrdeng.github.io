@@ -1,13 +1,36 @@
 ---
-title: "Portfolio item number 1"
-excerpt: "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
-collection: portfolio
+permalink: /
+title: ""
+author_profile: true
+redirect_from: 
+  - /about/
+  - /about.html
 ---
 
-This is an item in your portfolio. It can be have images or nice text. If you name the file .md, it will be parsed as markdown. If you name the file .html, it will be parsed as HTML. 
+I am a graduate of New York University with a degree in Economics and Mathematics and am currently pursuing my Master’s in Development Engineering, with a focus on AI and Data Science for corporate, NGO, and government applications. I have worked as a Project Manager with MIT’s Emerging Talent Program, an Economic Analyst with the Milken Institute, a Research Assistant at NYU Abu Dhabi’s Center for Technology and Economic Development, and a Data Analyst with Pangea Educational Development. These roles have allowed me to bridge research, data, and policy to address development and economic challenges at both local and global levels.
 
-This project introduced the fundamentals of reproducible workflows in computational social science.  
-I learned how to create and manage GitHub repositories, track changes with Git, and collaborate with teammates through branches, pull requests, and reviews.  
+Beyond my academic and professional experience, I also run two nonprofit organizations: the Romro Foundation, which supports underprivileged students with access to education and mentorship, and the Thok Nath Research Institute, which advances cultural preservation, education, and technology initiatives. Through these initiatives, I have collaborated with Google and the BBC, highlighting my commitment to driving innovation and impact across diverse sectors.
 
-The project also included creating a personal website using GitHub Pages, where I documented my work and showcased my progress.  
-These skills form the foundation for transparent and collaborative research practices.  
+
+
+**Education & Academic Background**
+- Graduate of New York University with a degree in Economics and Mathematics
+- Currently pursuing a Master’s in Development Engineering
+- Focus areas: education, sustainable development, and community resilience
+
+**Professional & Social Impact**
+- Founder of the Thok Nath Research Institute and the Bangtigow Foundation
+- Led initiatives in:
+  - Language preservation and digital education (including standardizing Thok Nath and adding it to Google Translate)
+  - Mentorship programs for underserved youth in refugee and IDP communities
+- Collaborates with global institutions like BBC World News, NYU CTED, and PANGEA Educational Development
+
+**Vision & Aspirations**
+- Bridging local realities with global solutions
+- Committed to transforming communities through:
+  - Knowledge
+  - Empathy
+  - Innovation
+- Future goals include management consulting, policy work, and doctoral research
+
+Chuol’s journey demonstrates how resilience, leadership, and education can turn challenges into lasting opportunities for impact.
