@@ -1,4 +1,4 @@
-
+---
 Welcome to my portfolio — a collection of projects and initiatives that reflect my passion for education, research, technology, and community empowerment.  
 
 ---
