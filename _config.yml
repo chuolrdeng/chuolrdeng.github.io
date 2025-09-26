@@ -221,10 +221,10 @@ collections:
   # teaching:
   #   output: true
   #   permalink: /:collection/:path/
-  publications:
+  project:
     output: true
     permalink: /:collection/:path/
-  portfolio:
+ Curriculum Vitae:
     output: true
     permalink: /:collection/:path/
 
