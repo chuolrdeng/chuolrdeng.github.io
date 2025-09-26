@@ -13,12 +13,12 @@ redirect_from:
 
 
 Education
-======
+---
 * M.S. in Development Engineering (AI and Data Science focus), UC Berkeley, 2026 (expected)  
 * B.Sc. in Economics and Mathematics, New York University, 2020-2024
   
 Work Experience
-======
+---
 * 2024 – Present: Research Assistant  
   * NYU Abu Dhabi – Center for Technology and Economic Development (CTED) & Africa House  
   * Duties included: Conducting field research, data analysis (Stata, R, Matlab), supporting blockchain & economic development projects, and preparing research reports.  
@@ -36,9 +36,8 @@ Work Experience
   * Office of Social Responsibility, NYU Abu Dhabi  
   * Duties included: Overseeing logistics, budgets, vendor management, and event coordination.  
 
-
 Skills
-======
+---
 * Data Analysis & Research  
   * Stata, R, Matlab, Python, Excel  
 * Web & Tech  
