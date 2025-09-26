@@ -9,8 +9,6 @@ redirect_from:
 
 {% include base_path %}
 
-
----
 Project 1: Reproducibility and GitHub
 ---
 This project introduced the fundamentals of reproducible workflows in computational social science.  
