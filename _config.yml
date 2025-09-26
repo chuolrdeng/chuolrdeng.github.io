@@ -79,6 +79,17 @@ author:
   youtube          : # Username
   zhihu            : # Username
 
+
+defaults:
+  - scope:
+      path: ""
+      type: "about"
+    values:
+      prev_next: false
+      share: false
+      date: false
+
+
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
   books:
