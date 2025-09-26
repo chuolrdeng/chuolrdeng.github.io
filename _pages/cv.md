@@ -11,12 +11,15 @@ redirect_from:
 
  [Chuol's CV Here](/files/ChuolRueiDengBerkeley.pdf).
 
+---
 Education
+---
 ======
-* M.S. in Development Engineering (AI and Data Science focus), New York University Abu Dhabi, 2025 (expected)  
-* B.Sc. in Economics and Mathematics, New York University, 2024  
-
+* M.S. in Development Engineering (AI and Data Science focus), UC Berkeley, 2026 (expected)  
+* B.Sc. in Economics and Mathematics, New York University, 2020-2024  
+---
 Work Experience
+---
 ======
 * 2024 – Present: Research Assistant  
   * NYU Abu Dhabi – Center for Technology and Economic Development (CTED) & Africa House  
@@ -35,7 +38,9 @@ Work Experience
   * Office of Social Responsibility, NYU Abu Dhabi  
   * Duties included: Overseeing logistics, budgets, vendor management, and event coordination.  
 
+---
 Skills
+---
 ======
 * Data Analysis & Research  
   * Stata, R, Matlab, Python, Excel  
