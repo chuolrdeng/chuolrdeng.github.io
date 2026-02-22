@@ -1,0 +1,75 @@
+:root {
+  --font-chancery: 'Allura', 'Apple Chancery', 'Chancery', cursive;
+  --font-display: 'Cormorant Garamond', 'Times New Roman', Times, serif;
+  --font-body: 'Lora', 'Times New Roman', Georgia, serif;
+  --color-maroon: #800020;
+  --color-maroon-hover: #5c0018;
+  --color-gold: #b8860b;
+  --color-gold-light: #d4a84b;
+  --color-white: #ffffff;
+  --color-gray: #4a4a4a;
+  --color-gray-light: #6b6b6b;
+  --color-gray-bg: #f5f5f5;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f5f5;
+  --color-text: #1a1a1a;
+  --color-text-muted: var(--color-gray);
+  --color-accent: var(--color-maroon);
+  --color-accent-hover: var(--color-maroon-hover);
+  --color-border: rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--color-maroon);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-maroon-hover);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+section {
+  padding: 4rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 5rem 2rem;
+  }
+}
