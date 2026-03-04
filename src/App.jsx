@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { Routes, Route, Link, NavLink, useLocation } from 'react-router-dom'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import {
   bioContent,
   cvSummary,
@@ -340,32 +340,112 @@ function ContactPage() {
 function ContactForm() {
   const [status, setStatus] = useState('idle') // idle | sending | success | error
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
+  const [errors, setErrors] = useState({ name: '', email: '', subject: '', message: '' })
+  const [touched, setTouched] = useState({ name: false, email: false, subject: false, message: false })
+  const [errorMessage, setErrorMessage] = useState('')
+  const [honeypot, setHoneypot] = useState('')
+
+  const validate = (field, value) => {
+    if (field === 'name') {
+      if (!value.trim()) return 'Name is required.'
+      if (value.trim().length < 2) return 'Name must be at least 2 characters.'
+    }
+    if (field === 'email') {
+      if (!value.trim()) return 'Email is required.'
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address.'
+    }
+    if (field === 'subject') {
+      if (!value.trim()) return 'Subject is required.'
+      if (value.trim().length < 3) return 'Subject must be at least 3 characters.'
+    }
+    if (field === 'message') {
+      if (!value.trim()) return 'Message is required.'
+      if (value.trim().length < 20) return 'Message must be at least 20 characters.'
+    }
+    return ''
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    if (touched[name]) {
+      setErrors((prev) => ({ ...prev, [name]: validate(name, value) }))
+    }
+  }
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target
+    setTouched((prev) => ({ ...prev, [name]: true }))
+    setErrors((prev) => ({ ...prev, [name]: validate(name, value) }))
+  }
+
+  const resetForm = () => {
+    setStatus('idle')
+    setFormData({ name: '', email: '', subject: '', message: '' })
+    setErrors({ name: '', email: '', subject: '', message: '' })
+    setTouched({ name: false, email: false, subject: false, message: false })
+    setErrorMessage('')
+    setHoneypot('')
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    // Spam protection — if honeypot is filled, silently do nothing
+    if (honeypot) return
+
+    // Step 1 — validate all fields before touching the network
+    const nameErr = validate('name', formData.name)
+    const emailErr = validate('email', formData.email)
+    const subjectErr = validate('subject', formData.subject)
+    const messageErr = validate('message', formData.message)
+
+    if (nameErr || emailErr || subjectErr || messageErr) {
+      setErrors({ name: nameErr, email: emailErr, subject: subjectErr, message: messageErr })
+      setTouched({ name: true, email: true, subject: true, message: true })
+      return // stop here, never reach fetch
+    }
+
     setStatus('sending')
+    setErrorMessage('')
+
+    // Step 2 — timeout protection
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 10000)
+
     try {
       const fd = new FormData()
       fd.append('name', formData.name)
       fd.append('email', formData.email)
       fd.append('subject', formData.subject)
       fd.append('message', formData.message)
+
       const res = await fetch('https://formspree.io/f/xykdnbwv', {
         method: 'POST',
         body: fd,
+        signal: controller.signal,
       })
-      if (res.ok) {
-        setStatus('success')
-        setFormData({ name: '', email: '', subject: '', message: '' })
-      } else {
+
+      clearTimeout(timeout)
+
+      // Step 3 — handle server rejection with logging
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => null)
+        console.error('Formspree rejected submission:', res.status, errorData)
+        setErrorMessage('The server rejected your message. Please try again or email me directly at your@email.com.')
         setStatus('error')
+        return
       }
-    } catch {
+
+      setStatus('success')
+    } catch (err) {
+      clearTimeout(timeout)
+      console.error('Form submission error:', err)
+      if (err.name === 'AbortError') {
+        setErrorMessage('Request timed out. Please check your connection and try again.')
+      } else {
+        setErrorMessage('Something went wrong. Please try again or email me directly at your@email.com.')
+      }
       setStatus('error')
     }
   }
@@ -375,95 +455,291 @@ function ContactForm() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   }
 
+  if (status === 'success') {
+    return (
+      <motion.div
+        className="form-success-card"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.span
+          className="success-icon"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 12, delay: 0.2 }}
+        >
+          ✉
+        </motion.span>
+
+        <motion.h2
+          className="success-heading"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.35 }}
+        >
+          Thanks for contacting me.
+        </motion.h2>
+
+        <motion.p
+          className="success-body"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.45 }}
+        >
+          I appreciate you reaching out. I'll get back to you as soon as possible.
+          If you need an immediate response, email me directly at{' '}
+          <a href="mailto:your@email.com">your@email.com</a>.
+        </motion.p>
+
+        <motion.button
+          className="success-reset-btn"
+          onClick={resetForm}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.6 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Send another message
+        </motion.button>
+      </motion.div>
+    )
+  }
+
   return (
     <motion.form
       className="contact-form"
       onSubmit={handleSubmit}
+      noValidate
       initial="hidden"
       animate="visible"
       variants={{ visible: { transition: { staggerChildren: 0.07, delayChildren: 0.12 } } }}
     >
-      <motion.div className="form-row" variants={rowVariant}>
-        <label htmlFor="contact-name">Name</label>
-        <input
-          id="contact-name"
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Your name"
-          required
-          disabled={status === 'sending'}
-        />
-      </motion.div>
-      <motion.div className="form-row" variants={rowVariant}>
-        <label htmlFor="contact-email">Email</label>
-        <input
-          id="contact-email"
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="you@example.com"
-          required
-          disabled={status === 'sending'}
-        />
-      </motion.div>
-      <motion.div className="form-row" variants={rowVariant}>
-        <label htmlFor="contact-subject">Subject</label>
-        <input
-          id="contact-subject"
-          type="text"
-          name="subject"
-          value={formData.subject}
-          onChange={handleChange}
-          placeholder="What's this about?"
-          disabled={status === 'sending'}
-        />
-      </motion.div>
-      <motion.div className="form-row" variants={rowVariant}>
-        <label htmlFor="contact-message">Message</label>
-        <textarea
-          id="contact-message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Your message..."
-          rows={5}
-          required
-          disabled={status === 'sending'}
-        />
-      </motion.div>
+      {/* ── Dismissible error banner ── */}
+      <AnimatePresence>
+        {status === 'error' && (
+          <motion.div
+            className="form-error-banner"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <span>
+              {errorMessage}{' '}
+              <a href="mailto:your@email.com">
+                your@email.com
+              </a>
+            </span>
+            <button
+              type="button"
+              className="banner-dismiss"
+              onClick={() => setStatus('idle')}
+              aria-label="Dismiss error"
+            >
+              ✕
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Name ── */}
+      <AnimatePresence>
+        <motion.div
+          className={`form-row ${touched.name && !errors.name && formData.name ? 'has-valid' : ''}`}
+          variants={rowVariant}
+        >
+          <label htmlFor="contact-name">Name</label>
+          <input
+            id="contact-name"
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            placeholder="Your full name"
+            required
+            disabled={status === 'sending'}
+            aria-describedby="name-error"
+            className={
+              touched.name && errors.name
+                ? 'field-invalid'
+                : touched.name && !errors.name && formData.name
+                  ? 'field-valid'
+                  : ''
+            }
+          />
+          {touched.name && errors.name && (
+            <motion.span
+              id="name-error"
+              className="field-error"
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.25 }}
+            >
+              {errors.name}
+            </motion.span>
+          )}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── Email ── */}
+      <AnimatePresence>
+        <motion.div
+          className={`form-row ${touched.email && !errors.email && formData.email ? 'has-valid' : ''}`}
+          variants={rowVariant}
+        >
+          <label htmlFor="contact-email">Email</label>
+          <input
+            id="contact-email"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            placeholder="you@example.com"
+            required
+            disabled={status === 'sending'}
+            aria-describedby="email-error"
+            className={
+              touched.email && errors.email
+                ? 'field-invalid'
+                : touched.email && !errors.email && formData.email
+                  ? 'field-valid'
+                  : ''
+            }
+          />
+          {touched.email && errors.email && (
+            <motion.span
+              id="email-error"
+              className="field-error"
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.25 }}
+            >
+              {errors.email}
+            </motion.span>
+          )}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── Subject ── */}
+      <AnimatePresence>
+        <motion.div
+          className={`form-row ${touched.subject && !errors.subject && formData.subject ? 'has-valid' : ''}`}
+          variants={rowVariant}
+        >
+          <label htmlFor="contact-subject">Subject</label>
+          <input
+            id="contact-subject"
+            type="text"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            placeholder="What's this about?"
+            disabled={status === 'sending'}
+            aria-describedby="subject-error"
+            className={
+              touched.subject && errors.subject
+                ? 'field-invalid'
+                : touched.subject && !errors.subject && formData.subject
+                  ? 'field-valid'
+                  : ''
+            }
+          />
+          {touched.subject && errors.subject && (
+            <motion.span
+              id="subject-error"
+              className="field-error"
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.25 }}
+            >
+              {errors.subject}
+            </motion.span>
+          )}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── Message ── */}
+      <AnimatePresence>
+        <motion.div
+          className={`form-row ${touched.message && !errors.message && formData.message ? 'has-valid' : ''}`}
+          variants={rowVariant}
+        >
+          <label htmlFor="contact-message">Message</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            placeholder="Your message..."
+            rows={5}
+            required
+            disabled={status === 'sending'}
+            aria-describedby="message-error"
+            className={
+              touched.message && errors.message
+                ? 'field-invalid'
+                : touched.message && !errors.message && formData.message
+                  ? 'field-valid'
+                  : ''
+            }
+          />
+          <span className={`char-counter ${formData.message.length >= 20 ? 'counter-ok' : 'counter-warn'}`}>
+            {formData.message.length} / 20 minimum characters
+          </span>
+          {touched.message && errors.message && (
+            <motion.span
+              id="message-error"
+              className="field-error"
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.25 }}
+            >
+              {errors.message}
+            </motion.span>
+          )}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Honeypot field for spam protection */}
+      <input
+        type="text"
+        name="_gotcha"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        style={{ display: 'none' }}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+
+      {/* ── Submit ── */}
       <motion.div className="form-actions" variants={rowVariant}>
         <motion.button
           type="submit"
           className="contact-submit"
           disabled={status === 'sending'}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: status === 'sending' ? 1 : 1.02 }}
+          whileTap={{ scale: status === 'sending' ? 1 : 0.98 }}
         >
-          {status === 'sending' ? 'Sending...' : 'Send message'}
+          {status === 'sending' ? (
+            <>
+              Sending
+              <span className="sending-dots" aria-hidden="true" />
+            </>
+          ) : (
+            'Send message'
+          )}
         </motion.button>
-        {status === 'success' && (
-          <motion.p
-            className="form-success"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            Thanks! I'll be in touch soon.
-          </motion.p>
-        )}
-        {status === 'error' && (
-          <motion.p
-            className="form-error"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            Something went wrong. Please try again or email me directly.
-          </motion.p>
-        )}
       </motion.div>
     </motion.form>
   )
