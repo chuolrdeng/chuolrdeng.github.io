@@ -338,6 +338,10 @@ function ContactPage() {
 }
 
 function ContactForm() {
+  const DIRECT_EMAIL = 'chuolrdeng@berkeley.edu'
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xykdnbwv'
+  const SUBMITTED_SESSION_KEY = 'contact_form_submitted_v1'
+
   const [status, setStatus] = useState('idle') // idle | sending | success | error
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState({ name: '', email: '', subject: '', message: '' })
@@ -345,22 +349,32 @@ function ContactForm() {
   const [errorMessage, setErrorMessage] = useState('')
   const [honeypot, setHoneypot] = useState('')
 
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem(SUBMITTED_SESSION_KEY) === '1') setStatus('success')
+    } catch {
+      // ignore storage access issues (privacy mode, etc.)
+    }
+  }, [])
+
   const validate = (field, value) => {
+    const v = typeof value === 'string' ? value.trim() : ''
     if (field === 'name') {
-      if (!value.trim()) return 'Name is required.'
-      if (value.trim().length < 2) return 'Name must be at least 2 characters.'
+      if (!v) return 'Name is required.'
+      if (v.length < 2) return 'Name must be at least 2 characters.'
     }
     if (field === 'email') {
-      if (!value.trim()) return 'Email is required.'
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address.'
+      if (!v) return 'Email is required.'
+      // Accept any normal email domain (e.g. berkeley.edu, gmail.com, example.com).
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Please enter a valid email address.'
     }
     if (field === 'subject') {
-      if (!value.trim()) return 'Subject is required.'
-      if (value.trim().length < 3) return 'Subject must be at least 3 characters.'
+      if (!v) return 'Subject is required.'
+      if (v.length < 3) return 'Subject must be at least 3 characters.'
     }
     if (field === 'message') {
-      if (!value.trim()) return 'Message is required.'
-      if (value.trim().length < 20) return 'Message must be at least 20 characters.'
+      if (!v) return 'Message is required.'
+      if (v.length < 20) return 'Message must be at least 20 characters.'
     }
     return ''
   }
@@ -386,6 +400,11 @@ function ContactForm() {
     setTouched({ name: false, email: false, subject: false, message: false })
     setErrorMessage('')
     setHoneypot('')
+    try {
+      sessionStorage.removeItem(SUBMITTED_SESSION_KEY)
+    } catch {
+      // ignore
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -420,9 +439,13 @@ function ContactForm() {
       fd.append('subject', formData.subject)
       fd.append('message', formData.message)
 
-      const res = await fetch('https://formspree.io/f/xykdnbwv', {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         body: fd,
+        headers: {
+          // Without this, Formspree may respond with a redirect (which looks like an error to fetch).
+          Accept: 'application/json',
+        },
         signal: controller.signal,
       })
 
@@ -432,11 +455,22 @@ function ContactForm() {
       if (!res.ok) {
         const errorData = await res.json().catch(() => null)
         console.error('Formspree rejected submission:', res.status, errorData)
-        setErrorMessage('The server rejected your message. Please try again or email me directly at your@email.com.')
+        setErrorMessage('The server rejected your message. Please try again, or email me directly at')
         setStatus('error')
         return
       }
 
+      try {
+        sessionStorage.setItem(SUBMITTED_SESSION_KEY, '1')
+      } catch {
+        // ignore
+      }
+
+      // Clear fields so the message doesn't linger in the UI.
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      setErrors({ name: '', email: '', subject: '', message: '' })
+      setTouched({ name: false, email: false, subject: false, message: false })
+      setHoneypot('')
       setStatus('success')
     } catch (err) {
       clearTimeout(timeout)
@@ -444,7 +478,7 @@ function ContactForm() {
       if (err.name === 'AbortError') {
         setErrorMessage('Request timed out. Please check your connection and try again.')
       } else {
-        setErrorMessage('Something went wrong. Please try again or email me directly at your@email.com.')
+        setErrorMessage('Something went wrong. Please try again, or email me directly at')
       }
       setStatus('error')
     }
@@ -478,7 +512,7 @@ function ContactForm() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.35 }}
         >
-          Thanks for contacting me.
+          Thank you for contacting me.
         </motion.h2>
 
         <motion.p
@@ -487,22 +521,8 @@ function ContactForm() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.45 }}
         >
-          I appreciate you reaching out. I'll get back to you as soon as possible.
-          If you need an immediate response, email me directly at{' '}
-          <a href="mailto:your@email.com">your@email.com</a>.
+          I will get back to you.
         </motion.p>
-
-        <motion.button
-          className="success-reset-btn"
-          onClick={resetForm}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.6 }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Send another message
-        </motion.button>
       </motion.div>
     )
   }
@@ -528,14 +548,17 @@ function ContactForm() {
           >
             <span>
               {errorMessage}{' '}
-              <a href="mailto:your@email.com">
-                your@email.com
+              <a href={`mailto:${DIRECT_EMAIL}`}>
+                {DIRECT_EMAIL}
               </a>
             </span>
             <button
               type="button"
               className="banner-dismiss"
-              onClick={() => setStatus('idle')}
+              onClick={() => {
+                setStatus('idle')
+                setErrorMessage('')
+              }}
               aria-label="Dismiss error"
             >
               ✕
