@@ -1,20 +1,16 @@
-// Content derived from CV and research — update with your exact details from the PDFs.
-
 export const cvPdfUrl = '/Deng_Chuol_CV.pdf'
-// Encoded so the link works with apostrophe in filename
 export const researchPdfUrl = "/Chuol%27s%20Capstone%20Research%20Paper.pdf"
 
-// Bio drafted from CV — tailor to match your CV exactly
-export const bioContent = `I'm Chuol Ruei Deng — a researcher and builder with a focus on turning ideas into impact. My work spans academic research, software development, and collaborative projects where clarity and execution matter.
+export const bioContent = `I'm Chuol Ruei Deng, a first-generation student, researcher, and builder driven by one mission: creating human-centered technology that solves real problems in development economics, education, business, and finance.
 
-I completed a capstone research project that deepened my skills in analysis and communication, and I bring the same rigor to every role and team I join. I'm drawn to problems that require both technical depth and clear thinking, and I enjoy learning in public and shipping work that others can build on.
+I'm pursuing a Master of Development Engineering at UC Berkeley with a concentration in AI and Data Analytics, building on an undergraduate degree in Economics and Mathematics from New York University. Born between South Sudan and Ethiopia, my background has given me a deep appreciation for the communities that technology too often overlooks.
 
-When I'm not in the lab or at the keyboard, I'm usually exploring new topics, connecting with people who care about meaningful work, or diving into the next challenge.`
+Beyond the classroom, I co-founded the Romro Foundation, Bangtigow in Education, and the Thok Nath Research Institute, each built to create lasting impact through education, community engagement, and economic self-sufficiency.
 
-// CV page: short summary + link to full PDF
+I build automated systems, develop software, and lead projects where clarity and follow-through are non-negotiable — because good ideas are not enough without strong execution.`
+
 export const cvSummary = `I combine research experience, technical skills, and a track record of collaboration and leadership. My capstone work and project experience have strengthened my ability to analyze problems, communicate findings, and deliver results. Download my full CV below for education, experience, and skills.`
 
-// CV timeline entries — replace with exact roles/dates from your CV
 export const cvEntries = [
   {
     role: 'Capstone Research',
@@ -30,14 +26,12 @@ export const cvEntries = [
   },
 ]
 
-// Research paper: abstract/summary + link (replace abstract with exact text from your PDF)
 export const researchPaper = {
   title: "Capstone Research Paper",
   abstract: `This capstone research project addresses a substantive question in the field through a structured methodology: literature review, clear research design, data collection and analysis, and interpretation of results. The paper presents findings and implications and discusses limitations and directions for future work. It reflects the author's ability to conduct independent research and communicate it effectively in academic form.`,
   pdfUrl: researchPdfUrl,
 }
 
-// Projects drawn from CV experience — replace with your real projects and links
 export const projects = [
   {
     title: 'Capstone Research Project',
@@ -62,11 +56,53 @@ export const projects = [
   },
 ]
 
-// Footer: same on every page (GitHub, LinkedIn, Instagram, Email)
-// iconKey must match one of: github, linkedin, instagram, email (used to render real icons)
 export const footerSocials = [
   { label: 'GitHub', href: 'https://github.com/chuolrdeng', iconKey: 'github', ariaLabel: 'GitHub profile' },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/chuolrdeng', iconKey: 'linkedin', ariaLabel: 'LinkedIn profile' },
   { label: 'Instagram', href: 'https://instagram.com/chuolrdeng', iconKey: 'instagram', ariaLabel: 'Instagram profile' },
   { label: 'Email', href: 'mailto:chuolrdeng@berkeley.edu', iconKey: 'email', ariaLabel: 'Send email' },
+]
+
+export const educationEntries = [
+  {
+    degree: 'Master of Development Engineering',
+    field: 'AI and Data Analytics',
+    school: 'University of California, Berkeley',
+    years: '2025 — Present',
+    image: '/uc-berkeley.png',
+    desc: 'Pursuing advanced study at the intersection of technology and human development, with a focus on building AI-driven systems and data tools that address real-world challenges in low-resource and underserved communities.',
+  },
+  {
+    degree: 'Bachelor of Arts',
+    field: 'Economics and Mathematics',
+    school: 'New York University',
+    years: '2020 — 2024',
+    image: '/nyuad.jpeg',
+    desc: 'Built a rigorous analytical foundation in economic theory, quantitative methods, and mathematical modeling. Completed capstone research in data analysis and econometrics in finance, developing the research and execution skills carried into every project since.',
+  },
+  {
+    degree: 'High School Diploma',
+    field: 'Science',
+    school: 'School of Tomorrow',
+    years: '2016 — 2020',
+    image: '/sot.jpeg',
+    desc: 'Developed an early foundation in scientific reasoning, mathematics, and critical thinking that shaped a lifelong interest in research, problem solving, and understanding how systems work.',
+  },
+]
+
+export const organizationEntries = [
+  {
+    name: 'Thok Nath Research Institute',
+    role: 'Co-Founder',
+    est: '2023',
+    image: '/thok-nath.png',
+    desc: 'A research institute dedicated to the preservation and advancement of the Nuer language and culture through technology and linguistic research. The institute develops digital tools, builds language datasets, and creates NLP pipelines for Thok Nath — one of the most under-resourced languages in the world. Its long-term mission is to ensure the Nuer language survives and thrives in the digital age, giving the Nuer-speaking diaspora across South Sudan, Ethiopia, and beyond the infrastructure to communicate, learn, and build in their own language.',
+  },
+  {
+    name: 'Romro Foundation',
+    role: 'Co-Founder',
+    est: '2020',
+    image: '/romro.png',
+    desc: 'Romro Foundation is a registered 501(c)(3) nonprofit organization focused on providing practical educational opportunities in regions of the world where such opportunities are limited. Romro is the parent organization behind two educational initiatives. Bangtigow in Education provides scholarships, mentorship, and academic support to Nuer youth. The Thok Nath Research Institute focuses on language preservation and cultural technology. Together these programs reflect a single belief: that sustainable development starts with investing in people, their education, and their identity.',
+  },
 ]
