@@ -1262,7 +1262,7 @@
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-maroon);
   margin-bottom: 0.4rem;
 }
 
@@ -1345,7 +1345,7 @@
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-maroon);
 }
 
 .project-research-link {

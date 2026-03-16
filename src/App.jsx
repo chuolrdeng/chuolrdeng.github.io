@@ -970,7 +970,7 @@ function ProjectsPage() {
     <motion.main className="page-layout projects-page" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.35 }}>
       <section className="section" ref={personalRef}>
         <motion.div initial={{ opacity: 0, y: 16 }} animate={personalInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}>
-          <h2 className="projects-section-title">Personal <em>Projects</em></h2>
+          <h2 className="projects-section-title"><span style={{ color: 'var(--color-maroon)' }}>Personal</span> <em>Projects</em></h2>
         </motion.div>
         <motion.div className="projects-personal-grid" variants={personalContainerVariants} initial="hidden" animate={personalInView ? 'visible' : 'hidden'}>
           {personalProjects.map((project, i) => (
@@ -993,7 +993,7 @@ function ProjectsPage() {
 
       <section className="section" ref={researchRef}>
         <motion.div initial={{ opacity: 0, y: 16 }} animate={researchInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}>
-          <h2 className="projects-section-title">Research and Technical <em>Projects</em></h2>
+          <h2 className="projects-section-title"><span style={{ color: 'var(--color-maroon)' }}>Research</span> and Technical <em>Projects</em></h2>
         </motion.div>
         <motion.div className="projects-research-grid" variants={researchContainerVariants} initial="hidden" animate={researchInView ? 'visible' : 'hidden'}>
           {researchProjects.map((project, i) => (
