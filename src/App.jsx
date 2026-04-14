@@ -296,6 +296,25 @@ function LandingPage() {
               <p className="info-card-field">{edu.field}</p>
               <p className="info-card-school">{edu.school}</p>
               <p className="info-card-desc">{edu.desc}</p>
+              {edu.programs && (
+                <div className="info-card-programs">
+                  {edu.programs.map((prog, j) => (
+                    <div key={j} className={`program-item ${!prog.image ? 'no-image' : ''}`}>
+                      {prog.image && (
+                        <div className="program-image">
+                          <img src={prog.image} alt={prog.school} />
+                        </div>
+                      )}
+                      <div className="program-content">
+                        <span className="program-tag">{prog.years}</span>
+                        <p className="program-field">{prog.field}</p>
+                        <p className="program-school">{prog.school}</p>
+                        <p className="program-desc">{prog.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </SectionCard>
           ))}
         </div>
@@ -927,21 +946,40 @@ function CVPage() {
 
 /* ═══════════════════ PROJECTS PAGE ═══════════════════ */
 
-const personalProjects = [
+const startupsProjects = [
+  {
+    title: 'JOW',
+    type: 'Startup',
+    tags: ['AI', 'Productivity', 'Calendar Intelligence', 'Behavioral Patterns', 'Next.js'],
+    description: 'Jow is a voice-first personal AI calendar assistant that manages scheduling through natural voice or text, automatically coordinating availability across people and calendars. It generates personalized daily briefings using calendar data, context, and behavioral patterns to help users better manage their time and decisions.',
+    link: 'https://jowcalendar.com',
+    external: true,
+  },
+  {
+    title: 'NaathCoders',
+    type: 'Community Initiative',
+    tags: ['Education Technology', 'Mentorship', 'Nuer Community', 'Africa', 'Bootcamp'],
+    description: 'A community-driven initiative dedicated to teaching coding and digital skills to underprivileged and underserved students in Ethiopia. It aims to expand access to technology education and empower the next generation of builders by fostering local innovation and technical capacity.',
+  },
   {
     title: 'Naath AI',
+    type: 'Research Initiative',
     tags: ['Python', 'NLP', 'Machine Learning', 'Corpus Building'],
     description: 'An NLP pipeline and corpus construction project for Thok Nath, the Nuer language. One of the first machine learning efforts targeting this critically under-resourced language spoken by millions across South Sudan and Ethiopia.',
   },
   {
     title: 'Naath Book Store',
+    type: 'Platform',
     tags: ['Next.js', 'Flask', 'PostgreSQL', 'Stripe', 'Paystack'],
     description: 'A community-driven online marketplace for Nuer literature and cultural content. Built with a 70/30 revenue split designed to put earning power directly in the hands of Nuer authors and creators.',
   },
   {
     title: 'Thok Nath E-Learning',
+    type: 'Education Technology',
     tags: ['React', 'Python', 'Education Technology'],
     description: 'A digital learning platform designed to teach and preserve the Nuer language for diaspora communities. Combines language instruction with cultural context to serve learners across the world.',
+    link: 'https://thoknath.org',
+    external: true,
   },
 ]
 
@@ -961,26 +999,31 @@ const projectCardVariants = { hidden: { opacity: 0, y: 30 }, visible: { opacity:
 
 function ProjectsPage() {
   usePageTitle('Projects')
-  const personalRef = useRef(null)
-  const personalInView = useInView(personalRef, { once: true, margin: '-60px' })
+  const startupsRef = useRef(null)
+  const startupsInView = useInView(startupsRef, { once: true, margin: '-60px' })
   const researchRef = useRef(null)
   const researchInView = useInView(researchRef, { once: true, margin: '-60px' })
 
   return (
     <motion.main className="page-layout projects-page" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.35 }}>
-      <section className="section" ref={personalRef}>
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={personalInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}>
-          <h2 className="projects-section-title"><span style={{ color: 'var(--color-maroon)' }}>Personal</span> <em>Projects</em></h2>
+      <section className="section" ref={startupsRef}>
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={startupsInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}>
+          <h2 className="projects-section-title"><span style={{ color: 'var(--color-maroon)' }}>Startups and</span> <em>Initiatives</em></h2>
         </motion.div>
-        <motion.div className="projects-personal-grid" variants={personalContainerVariants} initial="hidden" animate={personalInView ? 'visible' : 'hidden'}>
-          {personalProjects.map((project, i) => (
+        <motion.div className="projects-personal-grid" variants={personalContainerVariants} initial="hidden" animate={startupsInView ? 'visible' : 'hidden'}>
+          {startupsProjects.map((project, i) => (
             <motion.div key={i} className="project-featured-card" variants={projectCardVariants} whileHover={{ y: -4, transition: { duration: 0.25 } }}>
               <div className="project-featured-header">
                 <div>
-                  <p className="project-type">Personal Project</p>
+                  <p className="project-type">{project.type}</p>
                   <h3 className="project-title">{project.title}</h3>
                 </div>
-                <span className="project-coming-soon">Coming Soon</span>
+                {project.link && (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link" aria-label={`Visit ${project.title}`}>
+                    Visit →
+                  </a>
+                )}
+                {!project.link && <span className="project-coming-soon">Coming Soon</span>}
               </div>
               <p className="project-description">{project.description}</p>
               <div className="project-tags">

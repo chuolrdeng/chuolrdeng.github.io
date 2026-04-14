@@ -79,6 +79,36 @@ export const educationEntries = [
     years: '2020 — 2024',
     image: '/nyuad.jpeg',
     desc: 'Built a rigorous analytical foundation in economic theory, quantitative methods, and mathematical modeling. Completed capstone research in data analysis and econometrics in finance, developing the research and execution skills carried into every project since.',
+    programs: [
+      {
+        field: 'Economics, Mathematics, and Finance',
+        school: 'NYU Stern School of Business',
+        years: '2023',
+        image: '/nyu_stern.jpg',
+        desc: 'Completed graduate-level coursework in economics, mathematics, and finance.',
+      },
+      {
+        field: 'Anglo-American Politics, Policy, and Public Opinion',
+        school: 'New York University Washington, D.C.',
+        years: '2022',
+        image: '/nyu_dc.png',
+        desc: 'Course with Professor Frank Luntz.',
+      },
+      {
+        field: 'Ethnography and Field Research',
+        school: 'New York University Tel Aviv',
+        years: '2023',
+        image: '/nyu_telaviv.png',
+        desc: 'Course with Professor Mitchell Duneier (Princeton University).',
+      },
+      {
+        field: 'Ecopoetics',
+        school: 'New York University – Bangalore, India',
+        years: '2024',
+        image: null,
+        desc: 'Interdisciplinary study exploring the relationship between ecology, culture, and society.',
+      },
+    ],
   },
   {
     degree: 'High School Diploma',
