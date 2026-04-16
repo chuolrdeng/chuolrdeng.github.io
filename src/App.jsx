@@ -146,30 +146,32 @@ function renderWithHighlights(text) {
 }
 
 function SectionCard({ image, imageAlt, children, index }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-60px' })
+  const viewportOpts = { once: true, margin: '-60px' }
+  const slideX = index % 2 === 0 ? -40 : 40
 
   return (
     <motion.div
-      ref={ref}
       className="info-card"
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, x: slideX, y: 20 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={viewportOpts}
+      transition={{ duration: 0.65, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
     >
       <motion.div
         className="info-card-image"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.5, delay: index * 0.15 + 0.2 }}
+        initial={{ opacity: 0, scale: 0.85, rotate: index % 2 === 0 ? -3 : 3 }}
+        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+        viewport={viewportOpts}
+        transition={{ duration: 0.55, delay: index * 0.12 + 0.15, ease: 'easeOut' }}
       >
         <img src={image} alt={imageAlt} />
       </motion.div>
       <motion.div
         className="info-card-content"
-        initial={{ opacity: 0, x: 30 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.5, delay: index * 0.15 + 0.3 }}
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewportOpts}
+        transition={{ duration: 0.5, delay: index * 0.12 + 0.25 }}
       >
         {children}
       </motion.div>
@@ -217,10 +219,7 @@ function LandingPage() {
     return () => timers.forEach(t => clearTimeout(t))
   }, [typingDone])
 
-  const eduRef = useRef(null)
-  const eduInView = useInView(eduRef, { once: true, margin: '-80px' })
-  const orgRef = useRef(null)
-  const orgInView = useInView(orgRef, { once: true, margin: '-80px' })
+  const sectionViewport = { once: true, margin: '-80px' }
 
   return (
     <>
@@ -278,15 +277,30 @@ function LandingPage() {
         </div>
       </motion.section>
 
-      <section className="landing-sections" ref={eduRef}>
+      <section className="landing-sections">
         <motion.div
           className="landing-section-header"
-          initial={{ opacity: 0, y: 30 }}
-          animate={eduInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={sectionViewport}
+          transition={{ duration: 0.4 }}
         >
-          <h2 className="landing-section-title">Education</h2>
-          <div className="landing-section-line" />
+          <motion.h2
+            className="landing-section-title"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={sectionViewport}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Education
+          </motion.h2>
+          <motion.div
+            className="landing-section-line"
+            initial={{ scaleX: 0, originX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={sectionViewport}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          />
         </motion.div>
         <div className="info-cards">
           {educationEntries.map((edu, i) => (
@@ -299,19 +313,38 @@ function LandingPage() {
               {edu.programs && (
                 <div className="info-card-programs">
                   {edu.programs.map((prog, j) => (
-                    <div key={j} className={`program-item ${!prog.image ? 'no-image' : ''}`}>
+                    <motion.div
+                      key={j}
+                      className={`program-item ${!prog.image ? 'no-image' : ''}`}
+                      initial={{ opacity: 0, x: j % 2 === 0 ? -30 : 30, y: 12 }}
+                      whileInView={{ opacity: 1, x: 0, y: 0 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{ duration: 0.5, delay: j * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                    >
                       {prog.image && (
-                        <div className="program-image">
+                        <motion.div
+                          className="program-image"
+                          initial={{ opacity: 0, scale: 0.8, rotate: -4 }}
+                          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                          viewport={{ once: true, margin: '-40px' }}
+                          transition={{ duration: 0.45, delay: j * 0.12 + 0.15, ease: 'easeOut' }}
+                        >
                           <img src={prog.image} alt={prog.school} />
-                        </div>
+                        </motion.div>
                       )}
-                      <div className="program-content">
+                      <motion.div
+                        className="program-content"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-40px' }}
+                        transition={{ duration: 0.4, delay: j * 0.12 + 0.2 }}
+                      >
                         <span className="program-tag">{prog.years}</span>
                         <p className="program-field">{prog.field}</p>
                         <p className="program-school">{prog.school}</p>
                         <p className="program-desc">{prog.desc}</p>
-                      </div>
-                    </div>
+                      </motion.div>
+                    </motion.div>
                   ))}
                 </div>
               )}
@@ -320,15 +353,30 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-sections" ref={orgRef}>
+      <section className="landing-sections">
         <motion.div
           className="landing-section-header"
-          initial={{ opacity: 0, y: 30 }}
-          animate={orgInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={sectionViewport}
+          transition={{ duration: 0.4 }}
         >
-          <h2 className="landing-section-title">Organizations</h2>
-          <div className="landing-section-line" />
+          <motion.h2
+            className="landing-section-title"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={sectionViewport}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Organizations
+          </motion.h2>
+          <motion.div
+            className="landing-section-line"
+            initial={{ scaleX: 0, originX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={sectionViewport}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          />
         </motion.div>
         <div className="info-cards">
           {organizationEntries.map((org, i) => (
@@ -971,7 +1019,7 @@ const startupsProjects = [
     title: 'Naath Book Store',
     type: 'Platform',
     tags: ['Next.js', 'Flask', 'PostgreSQL', 'Stripe', 'Paystack'],
-    description: 'A community-driven online marketplace for Nuer literature and cultural content. Built with a 70/30 revenue split designed to put earning power directly in the hands of Nuer authors and creators.',
+    description: 'A community-driven online marketplace for Nuer literature and cultural content. Built and designed to put earning power directly in the hands of the authors and creators.',
   },
   {
     title: 'Thok Nath E-Learning',
